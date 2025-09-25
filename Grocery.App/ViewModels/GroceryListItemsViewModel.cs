@@ -86,5 +86,33 @@ namespace Grocery.App.ViewModels
             }
         }
 
+        [RelayCommand]
+        public void SearchProducts(string searchText)
+        {
+            // if the searchText is empty give the full list of available products
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                GetAvailableProducts();
+            }
+            else
+            {
+                // Get the products if the product contains the searchText, casing is ingored
+                // Also checks if the items is not already in the groceryList and has more than 0 stock
+                IEnumerable<Product> filteredProducts = _productService.GetAll()
+                    .Where(p => p.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) 
+                                && MyGroceryListItems.FirstOrDefault(g => g.ProductId == p.Id) == null
+                                && p.Stock > 0);
+                
+                // Clear the Available products list
+                AvailableProducts.Clear();              
+                
+                // Fill the available products list with the items that come through the filter
+                foreach (Product product in filteredProducts)
+                {
+                    AvailableProducts.Add(product);
+                }
+            }
+        }
+        
     }
 }

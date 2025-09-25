@@ -30,7 +30,7 @@ jobs:
         run: dotnet restore
 
       - name: Bouw de applicatie
-        run: dotnet build -f net8.0-android --configuration Release --no-restore
+        run: dotnet build -f net8.0 --configuration Release --no-restore
 
       - name: Voer unit tests uit
-        run: dotnet test -f net8.0-android --configuration Release --no-restore --no-build --verbosity normal
+        run: dotnet test -f net8.0 --configuration Release --no-restore --no-build --verbosity normal

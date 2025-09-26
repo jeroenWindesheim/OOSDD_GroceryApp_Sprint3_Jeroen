@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+using Grocery.Core.Helpers;
 using Grocery.Core.Interfaces.Repositories;
 using Grocery.Core.Models;
 
@@ -32,6 +34,19 @@ namespace Grocery.Core.Data.Repositories
         public List<Client> GetAll()
         {
             return clientList;
+        }
+
+        public int CountClients()
+        {
+            Trace.WriteLine($"CountClients : {clientList.Count}");
+            return clientList.Count;
+        }
+
+        public Client? AddClientRepo(string name, string email, string password)
+        {
+            Client newClient = new Client(4, name, email, PasswordHelper.HashPassword(password));
+            clientList.Add(newClient);
+            return Get(newClient.Id);
         }
     }
 }

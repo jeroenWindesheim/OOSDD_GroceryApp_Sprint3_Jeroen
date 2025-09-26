@@ -3,6 +3,7 @@ using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,19 @@ namespace Grocery.Core.Services
         {
             List<Client> clients = _clientRepository.GetAll();
             return clients;
+        }
+
+        public int CountClients()
+        {
+            Trace.WriteLine("ClientService: Test");
+            return _clientRepository.CountClients();
+        }
+
+        public Client? Add(Client client)
+        {
+            // _clientRepository.Add(client);
+            return client;
+            // return (_clientRepository as dynamic).Add(client);
         }
     }
 }

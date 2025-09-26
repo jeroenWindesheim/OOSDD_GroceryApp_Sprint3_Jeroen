@@ -27,18 +27,31 @@ namespace TestCore
         }
 
 
-        //Unhappy flow
+        // Unhappy flow
         [Test]
         public void TestPasswordHelperReturnsFalse()
         {
-            Assert.Pass(); //Zelf uitwerken
+            // Arrange: 
+            string correctPassword = "user3";
+            string wrongPassword = "wrongPassword";
+            string passwordHash = PasswordHelper.HashPassword(correctPassword);
+
+            // Act
+            bool result = PasswordHelper.VerifyPassword(wrongPassword, passwordHash);
+
+            // Assert
+            Assert.IsFalse(result);
         }
 
-        [TestCase("user1", "IunRhDKa+fWo8+4/Qfj7Pg==.kDxZnUQHCZun6gLIE6d9oeULLRIuRmxmH2QKJv2IM08")]
-        [TestCase("user3", "sxnIcZdYt8wC8MYWcQVQjQ==.FKd5Z/jwxPv3a63lX+uvQ0+P7EuNYZybvkmdhbnkIHA")]
+        [TestCase("wrong1", "IunRhDKa+fWo8+4/Qfj7Pg==.kDxZnUQHCZun6gLIE6d9oeULLRIuRmxmH2QKJv2IM08=")]
+        [TestCase("wrong3", "sxnIcZdYt8wC8MYWcQVQjQ==.FKd5Z/jwxPv3a63lX+uvQ0+P7EuNYZybvkmdhbnkIHA=")]
         public void TestPasswordHelperReturnsFalse(string password, string passwordHash)
         {
-            Assert.Fail(); //Zelf uitwerken zodat de test slaagt!
+            // Act
+            bool result = PasswordHelper.VerifyPassword(password, passwordHash);
+            
+            // Assert
+            Assert.IsFalse(result);
         }
     }
 }

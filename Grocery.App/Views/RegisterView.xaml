@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Grocery.App.ViewModels"
+             x:Class="Grocery.App.Views.RegisterView"
+             x:DataType="vm:RegisterViewModel"
+             Title="RegisterView">
+    <ContentPage.Content>
+        <StackLayout Padding="20" VerticalOptions="Center">
+            <Label Text="Registreren" FontSize="24" VerticalOptions="Center"/>
+            
+            <Label Text="Name" />
+            <Entry Placeholder="Name" Text="{Binding Name}"/>
+            
+            <Label Text="Email" />
+            <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email"/>
+            
+            <Label Text="Password" />
+            <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True"/>
+            
+            <Button Text="Register" Command="{Binding RegisterCommand}"/>
+            
+            <HorizontalStackLayout Padding="0, 20" VerticalOptions="Center">
+                <Label Text="Already an account? " />
+                <Button Margin="20, 0" Text="Login" Command="{Binding GoToLoginCommand}"/>
+            </HorizontalStackLayout>
+            <Label Text="{Binding RegisterMessage}" TextColor="Red" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

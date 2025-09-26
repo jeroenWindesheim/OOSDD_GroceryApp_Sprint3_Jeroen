@@ -9,4 +9,9 @@ public partial class GroceryListItemsView : ContentPage
 		InitializeComponent();
         BindingContext = viewModel;
     }
+
+	private void SearchCommand(object sender, TextChangedEventArgs e)
+	{
+		((GroceryListItemsViewModel)BindingContext).SearchProducts(e.NewTextValue);
+	}
 }
